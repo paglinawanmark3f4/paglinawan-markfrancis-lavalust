@@ -1,3 +1,18 @@
-<div class="mb-3"><label class="form-label" for="product_name">Product name</label><input class="form-control" id="product_name" name="product_name" maxlength="100" value="<?= htmlspecialchars((string) ($old['product_name'] ?? '')) ?>" required></div>
-<div class="mb-3"><label class="form-label" for="description">Description</label><textarea class="form-control" id="description" name="description" rows="4"><?= htmlspecialchars((string) ($old['description'] ?? '')) ?></textarea></div>
-<div class="row g-3 mb-4"><div class="col-md-6"><label class="form-label" for="price">Price</label><input class="form-control" id="price" name="price" type="number" min="0" step="0.01" value="<?= htmlspecialchars((string) ($old['price'] ?? '')) ?>" required></div><div class="col-md-6"><label class="form-label" for="quantity">Quantity</label><input class="form-control" id="quantity" name="quantity" type="number" min="0" step="1" value="<?= htmlspecialchars((string) ($old['quantity'] ?? '')) ?>" required></div></div>
+<div class="field">
+	<label for="product_name">Product name</label>
+	<input id="product_name" name="product_name" maxlength="100" value="<?= htmlspecialchars((string) ($old['product_name'] ?? ''), ENT_QUOTES, 'UTF-8') ?>" required>
+</div>
+<div class="field">
+	<label for="description">Description</label>
+	<textarea id="description" name="description" rows="4"><?= htmlspecialchars((string) ($old['description'] ?? ''), ENT_QUOTES, 'UTF-8') ?></textarea>
+</div>
+<div class="field-grid">
+	<div class="field">
+		<label for="price">Price</label>
+		<input id="price" name="price" type="number" min="0" step="0.01" value="<?= htmlspecialchars((string) ($old['price'] ?? ''), ENT_QUOTES, 'UTF-8') ?>" required>
+	</div>
+	<div class="field">
+		<label for="quantity">Quantity</label>
+		<input id="quantity" name="quantity" type="number" min="0" step="1" value="<?= htmlspecialchars((string) ($old['quantity'] ?? ''), ENT_QUOTES, 'UTF-8') ?>" required>
+	</div>
+</div>

@@ -9,7 +9,7 @@ class AuthMiddleware
             session_start();
         }
 
-        if (!empty($_SESSION['auth_user'])) {
+        if (!empty($_SESSION['user_id'])) {
             return $next();
         }
 

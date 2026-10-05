@@ -163,23 +163,23 @@
                     <tr>
 
                         <td class="user-id">
-                            <?= htmlspecialchars($user->id ?? $user['id']) ?>
+                            <?= htmlspecialchars($user['id'] ?? '') ?>
                         </td>
 
                         <td>
-                            <?= htmlspecialchars($user->firstname ?? $user['firstname']) ?>
+                            <?= htmlspecialchars($user['firstname'] ?? '') ?>
                         </td>
 
                         <td>
-                            <?= htmlspecialchars($user->lastname ?? $user['lastname']) ?>
+                            <?= htmlspecialchars($user['lastname'] ?? '') ?>
                         </td>
 
                         <td>
-                            <?= htmlspecialchars($user->email ?? $user['email']) ?>
+                            <?= htmlspecialchars($user['email'] ?? '') ?>
                         </td>
 
                         <td>
-                            <?= htmlspecialchars($user->username ?? $user['username']) ?>
+                            <?= htmlspecialchars($user['username'] ?? '') ?>
                         </td>
 
                     </tr>

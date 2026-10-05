@@ -1,5 +1,45 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Edit product | Product Desk</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"></head>
-<body class="bg-light"><nav class="navbar navbar-dark bg-dark"><div class="container"><a class="navbar-brand" href="<?= site_url('products') ?>">Product Desk</a></div></nav>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#f5f4ef">
+	<title>Edit product | Product Desk</title>
+	<?php include __DIR__ . '/styles.php'; ?>
+</head>
+<body>
 <?php $product_data = []; if (isset($product)) { $product_data = is_object($product) ? get_object_vars($product) : $product; } ?>
-<main class="container py-4"><div class="card border-0 shadow-sm mx-auto" style="max-width: 720px"><div class="card-body p-4"><h1 class="h3 mb-4">Edit product</h1><?php if (!empty($errors)): ?><div class="alert alert-danger"><ul class="mb-0"><?php foreach ($errors as $error): ?><li><?= htmlspecialchars($error) ?></li><?php endforeach; ?></ul></div><?php endif; ?><form method="post" action="<?= site_url('products/edit/' . $product_data['id']) ?>"><?php $old = ['product_name' => $product_data['product_name'] ?? '', 'description' => $product_data['description'] ?? '', 'price' => $product_data['price'] ?? '', 'quantity' => $product_data['quantity'] ?? '']; include __DIR__ . '/form.php'; ?><div class="d-flex gap-2"><a class="btn btn-outline-secondary" href="<?= site_url('products') ?>">Cancel</a><button class="btn btn-primary" type="submit">Save changes</button></div></form></div></div></main></body></html>
+<header class="site-header">
+	<nav class="shell site-nav" aria-label="Main navigation">
+		<a class="brand" href="<?= site_url('products') ?>"><span class="brand-mark" aria-hidden="true">P</span><span class="brand-name">Product Desk</span></a>
+		<a class="button button-secondary button-small" href="<?= site_url('products') ?>">All products</a>
+	</nav>
+</header>
+<main class="shell form-shell">
+	<p class="breadcrumb"><a href="<?= site_url('products') ?>">Products</a> / Edit product</p>
+	<div class="form-heading">
+		<p class="eyebrow">Catalog entry</p>
+		<h1>Edit product</h1>
+		<p class="page-subtitle">Update the details for this item.</p>
+	</div>
+	<?php if (!empty($errors)): ?>
+		<div class="notice notice-error" role="alert"><ul class="error-list"><?php foreach ($errors as $error): ?><li><?= htmlspecialchars($error, ENT_QUOTES, 'UTF-8') ?></li><?php endforeach; ?></ul></div>
+	<?php endif; ?>
+	<?php
+	$old = [
+		'product_name' => $product_data['product_name'] ?? '',
+		'description' => $product_data['description'] ?? '',
+		'price' => $product_data['price'] ?? '',
+		'quantity' => $product_data['quantity'] ?? '',
+	];
+	?>
+	<form method="post" action="<?= site_url('products/edit/' . rawurlencode((string) ($product_data['id'] ?? ''))) ?>">
+		<div class="form-section"><?php include __DIR__ . '/form.php'; ?></div>
+		<div class="form-actions">
+			<a class="button button-secondary" href="<?= site_url('products') ?>">Cancel</a>
+			<button class="button button-primary" type="submit">Save changes</button>
+		</div>
+	</form>
+</main>
+</body>
+</html>

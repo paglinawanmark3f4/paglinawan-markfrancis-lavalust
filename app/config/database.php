@@ -57,28 +57,12 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 |   Example: $database['another_example'] = array('key' => 'value')
 */
 
-$env_file = dirname(__DIR__, 2) . '/.env';
-if (is_readable($env_file)) {
-    foreach (file($env_file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
-        $line = trim($line);
-        if ($line === '' || $line[0] === '#') {
-            continue;
-        }
-        [$key, $value] = array_pad(explode('=', $line, 2), 2, '');
-        $key = trim($key);
-        $value = trim($value);
-        if ($key !== '' && getenv($key) === false) {
-            putenv($key . '=' . trim($value, "\\\"'"));
-        }
-    }
-}
-
 $database['main'] = array(
     'driver'	=> getenv('DB_DRIVER') ?: 'mysql',
     'hostname'	=> getenv('DB_HOST') ?: 'localhost',
     'port'		=> getenv('DB_PORT') ?: '3306',
     'username'	=> getenv('DB_USER') ?: 'root',
-    'password'	=> getenv('DB_PASS') ?: (getenv('DB_PASSWORD') ?: ''),
+    'password' => getenv('DB_PASS') ?: (getenv('DB_PASSWORD') ?: ''),
     'database'	=> getenv('DB_NAME') ?: 'mydb',
     'charset'	=> getenv('DB_CHARSET') ?: 'utf8mb4',
     'dbprefix'	=> getenv('DB_PREFIX') ?: '',
