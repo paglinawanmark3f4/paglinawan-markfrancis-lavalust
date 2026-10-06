@@ -43,6 +43,7 @@ class ApiController extends Controller
         $tokens = $this->api->issue_tokens([
             'id' => (int) $user['id'],
             'role' => $user['role'],
+            'scopes' => $user['role'] === 'admin' ? ['read', 'write', 'delete'] : ['read'],
         ]);
 
         unset($user['password'], $user['is_active']);
